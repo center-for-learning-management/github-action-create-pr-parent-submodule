@@ -26,7 +26,7 @@ inputs:
   label:
     description: 'Create Release Environment label'
     required: false
-    default: 'Create Release Environment'
+    default: 'Bump Submodule'
   
 runs:
   using: 'composite'
@@ -82,7 +82,7 @@ runs:
           owner: '${{ inputs.owner }}',
           repo: '${{ inputs.parent_repository }}'.split('/')[1].trim(),
         });
-        const pr = res.data.filter(i => i.title.includes(process.env.GITHUB_RUN_ID));
+        const pr = res.data.filter(i => i.title.includes(${{ github.repository }}) && i.title.includes(${{ steps.get_release.outputs.tag_name }}));
         const prNumber = pr[0].number;  
         await github.rest.issues.addLabels({
           issue_number: prNumber,
