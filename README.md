@@ -1,4 +1,7 @@
 # GitHub Action: Creates Pull Request when Submodules are Updated
+```
+fork from https://github.com/releasehub-com/github-action-create-pr-parent-submodule
+```
 
 This GitHub action creates a new branch and pull request against the parent repository when submodules are updated
 
@@ -29,10 +32,8 @@ name: Submodule Updates
 # Start the job on all push #
 #############################
 on:
-  push:
-    branches-ignore: [master, main]
-  pull_request:
-    branches: [master, main]
+  release:
+    types: [created]
 
 ###############
 # Set the Job #
@@ -52,7 +53,7 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       ####################################
       # Run the action against code base #
