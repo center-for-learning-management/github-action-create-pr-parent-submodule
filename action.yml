@@ -31,6 +31,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
+  - name: Checkout code
+    uses: actions/checkout@v3
+
+  - name: Get release
+    id: get_release
+    uses: bruceadams/get-release@v1.3.2
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+
   - name: Checkout parent repository and branch
     uses: actions/checkout@v3
     with:
@@ -60,8 +69,8 @@ runs:
           repo: '${{ inputs.parent_repository }}'.split('/')[1].trim(),
           head: process.env.GITHUB_RUN_ID,
           base: '${{ inputs.pr_against_branch }}',
-          title: `[Auto-generated] Submodule Updates ${process.env.GITHUB_RUN_ID}`,
-          body: `[Auto-generated] Submodule Updates ${process.env.GITHUB_RUN_ID}`,
+          title: `[Submodule Update] ${github.event.repository.name} ${steps.get_release.outputs.tag_name}`,
+          body: ` ${step.get_release.outputs.body}`,
         });
 
   - name: Add labels
