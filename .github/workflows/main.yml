@@ -1,20 +1,19 @@
 name: 'submodule updates'
 
 on: 
-  push:
-    branches:
-      - test
+  release:
+    types: [created]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      PARENT_REPOSITORY: 'dustyspace/example-voting-submodules'
-      CHECKOUT_BRANCH: 'releasehub-integration'
-      PR_AGAINST_BRANCH: 'releasehub-integration'
-      OWNER: 'dustyspace'
+      PARENT_REPOSITORY: 'pwqbot/example-voting-submodules'
+      CHECKOUT_BRANCH: 'main'
+      PR_AGAINST_BRANCH: 'main'
+      OWNER: 'pwqbot'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run action
       id: run_action
       uses: ./
