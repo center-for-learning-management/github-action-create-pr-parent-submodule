@@ -69,8 +69,8 @@ runs:
           repo: '${{ inputs.parent_repository }}'.split('/')[1].trim(),
           head: process.env.GITHUB_RUN_ID,
           base: '${{ inputs.pr_against_branch }}',
-          title: `[Submodule Update] ${{ github.repository }} ${{ steps.get_release.outputs.tag_name }}`,
-          body: ` ${{ steps.get_release.outputs.body }}`,
+          title: `[Submodule Auto-Update] ${{ github.repository }}@${{ steps.get_release.outputs.tag_name }}`,
+          body: `${{ steps.get_release.outputs.html_url }}\n --- \n${{ steps.get_release.outputs.body }}`,
         });
 
   - name: Add labels
