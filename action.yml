@@ -82,7 +82,7 @@ runs:
           owner: '${{ inputs.owner }}',
           repo: '${{ inputs.parent_repository }}'.split('/')[1].trim(),
         });
-        const pr = res.data.filter(i => i.title.includes(${{ github.repository }}) && i.title.includes(${{ steps.get_release.outputs.tag_name }}));
+        const pr = res.data.filter(i => i.title.includes('${{ github.repository }}') && i.title.includes('${{ steps.get_release.outputs.tag_name }}'));
         const prNumber = pr[0].number;  
         await github.rest.issues.addLabels({
           issue_number: prNumber,
