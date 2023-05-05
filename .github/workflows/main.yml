@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      PARENT_REPOSITORY: 'pwqbot/example-voting-submodules'
+      PARENT_REPOSITORY: 'pwqbot/rumble'
       CHECKOUT_BRANCH: 'main'
       PR_AGAINST_BRANCH: 'main'
       OWNER: 'pwqbot'
