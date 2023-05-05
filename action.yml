@@ -70,7 +70,7 @@ runs:
           head: process.env.GITHUB_RUN_ID,
           base: '${{ inputs.pr_against_branch }}',
           title: `[Submodule Update] ${{ github.repository }} ${{ steps.get_release.outputs.tag_name }}`,
-          body: ` ${{ step.get_release.outputs.body }}`,
+          body: ` ${{ steps.get_release.outputs.body }}`,
         });
 
   - name: Add labels
