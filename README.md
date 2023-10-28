@@ -1,6 +1,6 @@
 # GitHub Action: Creates Pull Request when Submodules are Updated
 ```
-fork from https://github.com/releasehub-com/github-action-create-pr-parent-submodule
+fork from https://github.com/releasehub-com/github-action-create-pr-parent-submodule and https://github.com/pwqbot/github-action-create-pr-parent-submodule
 ```
 
 This GitHub action creates a new branch and pull request against the parent repository when submodules are updated
@@ -43,24 +43,24 @@ jobs:
     name: Submodule update
     runs-on: ubuntu-latest
     env:
-      PARENT_REPOSITORY: 'org/example-repository'
+      PARENT_REPOSITORY: 'center-for-learning-management/github-action-example'
       CHECKOUT_BRANCH: 'main'
       PR_AGAINST_BRANCH: 'main'
-      OWNER: 'org'
+      OWNER: 'center-for-learning-management'
 
     steps:
       ##########################
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       ####################################
       # Run the action against code base #
       ####################################
       - name: run action
         id: run_action
-        uses: releasehub-com/github-action-create-pr-parent-submodule@v1
+        uses: center-for-learning-management/github-action-create-pr-parent-submodule@v1
         with:
           github_token: ${{ secrets.RELEASE_HUB_SECRET }}
           parent_repository: ${{ env.PARENT_REPOSITORY }}
