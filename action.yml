@@ -20,6 +20,9 @@ inputs:
   parent_repository:
     description: 'Parent Repository'
     required: true
+  parent_submodule_directory:
+    description: 'Parent Directory Submodule Path'
+    required: true
   owner:
     description: 'Owner'
     required: true
@@ -27,6 +30,7 @@ inputs:
     description: 'Create Release Environment label'
     required: false
     default: 'Bump Submodule'
+   
   
 runs:
   using: 'composite'
@@ -54,7 +58,7 @@ runs:
     run: |
       git config user.name github-actions
       git config user.email github-actions@github.com
-      git submodule update --remote ${{ inputs.parent_submodule_directory }}
+      git submodule update --remote -- ${{ inputs.parent_submodule_directory }}
       git checkout -b $GITHUB_RUN_ID
       git commit -am "updating submodules"
       git push --set-upstream origin $GITHUB_RUN_ID
