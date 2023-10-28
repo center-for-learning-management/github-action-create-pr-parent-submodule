@@ -44,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PARENT_REPOSITORY: 'center-for-learning-management/github-action-example'
+      PARENT_REPOSITORY_PATH: '/submodulepath'
       CHECKOUT_BRANCH: 'main'
       PR_AGAINST_BRANCH: 'main'
       OWNER: 'center-for-learning-management'
@@ -64,6 +65,7 @@ jobs:
         with:
           github_token: ${{ secrets.RELEASE_HUB_SECRET }}
           parent_repository: ${{ env.PARENT_REPOSITORY }}
+          parent_submodule_directory  ${{ env.PARENT_REPOSITORY_PATH }}
           checkout_branch: ${{ env.CHECKOUT_BRANCH}}
           pr_against_branch: ${{ env.PR_AGAINST_BRANCH }}
           owner: ${{ env.OWNER }}
